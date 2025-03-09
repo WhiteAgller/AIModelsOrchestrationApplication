@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  mlops:
+    image: mlops
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000-8001:8000"
+    volumes:
+      - type: bind
+        source: ./reports
+        target: /reports
+    
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: vip
+    depends_on:
+      - db
+  db:
+    image: mongo
+    restart: always      
+    ports: 
+      - "27018:27017"
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data/db

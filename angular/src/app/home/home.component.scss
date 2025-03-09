@@ -1,0 +1,25 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu__item {
+    margin-bottom: 2rem;
+    height: 3rem;
+    width: 10rem;
+}
+
+.menu__header{
+    padding-bottom: 2rem;
+}
+
+.menu .menu__item{
+    background-color: cadetblue;
+}
+
+.menu__info{
+    font-size: 15px;
+    color: red;
+    font-weight: bold;
+}

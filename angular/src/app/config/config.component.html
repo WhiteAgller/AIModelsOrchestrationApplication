@@ -1,0 +1,20 @@
+<div class="section">
+    <h1>Konfigurace</h1>
+    <div class="config">
+        <ng-container *ngIf="!isLoggedIn">
+            <p class="config__message">Nejprve se musíte přihlásit!</p>
+        </ng-container>
+        <ng-container *ngIf="isLoggedIn">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="config__form">
+            <ng-container *ngFor="let control of formControls">
+            <mat-form-field class="config__item">
+                <mat-label>{{ control.label }}</mat-label>
+                <input matInput [formControlName]="control.name" required>
+            </mat-form-field>
+            </ng-container>
+        
+            <button mat-raised-button color="primary" type="submit" class="config_button">Uložit</button>
+        </form>
+        </ng-container>
+    </div>
+</div>

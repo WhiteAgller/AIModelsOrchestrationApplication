@@ -1,0 +1,38 @@
+.pipeline {
+  display: flex;
+  flex-direction: row;
+}
+
+.pipeline__left {
+  width: 50%;
+}
+
+.pipeline__addForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pipeline__item {
+  padding-right: 1rem;
+  width: 100%;
+}
+
+.pipeline__right {
+  width: 50%;
+  padding-left: 4rem;
+}
+
+.pipeline__submitForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.pipeline_addSubmit {
+  padding-bottom: 1rem;
+}
+
+.mat-column-restEndpoint {
+  max-width: 20rem;
+  word-wrap: break-word;
+}

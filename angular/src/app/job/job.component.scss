@@ -1,0 +1,19 @@
+li {
+  display: flex;
+  align-items: center;
+}
+
+.job {
+  display: flex;
+  padding-bottom: 1.5rem;
+}
+
+.jobs__text {
+  padding-left: 1rem;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.job__finished {
+  display: flex;
+}

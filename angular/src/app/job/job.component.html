@@ -1,0 +1,16 @@
+<div class="section">
+    <h1>Práce</h1>
+    <div class="jobs">
+      <ul>
+          <li *ngFor="let job of jobs">
+            <div class="job">
+              <div *ngIf="finishedJobs.includes(job.id)" class="job__finished"><mat-icon>done_outline</mat-icon></div>
+              <mat-spinner *ngIf="!finishedJobs.includes(job.id)" [diameter]="30"></mat-spinner> <div class="jobs__text">{{ job.displayName }}</div>
+            </div>
+          </li>
+          <span *ngIf="jobs.length == 0">
+            Žádné běžící práce.
+          </span>
+      </ul>  
+    </div>  
+</div>

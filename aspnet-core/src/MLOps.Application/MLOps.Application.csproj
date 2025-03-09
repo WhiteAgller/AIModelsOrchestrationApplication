@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>MLOps</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MLOps.Domain\MLOps.Domain.csproj" />
+    <ProjectReference Include="..\MLOps.Application.Contracts\MLOps.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Volo.Abp.Account.Application" Version="7.2.1" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="7.2.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="7.2.1" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="7.2.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="7.2.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="7.2.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,120 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="section">
+    <h1>Pipeliny</h1>
+    <div class="pipeline">
+        <div class="pipeline__left">
+            <div class="pipeline__add">
+                <form [formGroup]="myForm" class="pipeline__addForm">
+                    <mat-form-field appearance="fill" class="pipeline__item">
+                      <mat-label>Název</mat-label>
+                      <input matInput formControlName="name">
+                      <mat-error *ngIf="myForm.controls.name.invalid &&
+                      !myForm.controls.name.errors?.uniqueName">Název je povinný!</mat-error>
+                      <mat-error *ngIf="myForm.controls.name.errors?.uniqueName">Musí být unikátní!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="pipeline__item">
+                      <mat-label>Typ</mat-label>
+                      <mat-select formControlName="type">
+                        <mat-option *ngFor="let item of types" [value]="item">
+                          {{getTypeLabel(item)}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="myForm.controls.type.invalid">Typ je povinný!</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="fill" class="pipeline__item">
+                      <mat-label>Rest URL</mat-label>
+                      <input matInput formControlName="url">
+                      <mat-error *ngIf="myForm.controls.url.invalid">URL je povinné!</mat-error>
+                    </mat-form-field>
+
+                    <div class="pipeline_addSubmit">
+                        <button mat-raised-button type="submit" [disabled]="myForm.invalid" (click)="create()">Uložit</button>
+                    </div>
+                  </form>
+                
+            </div>
+            <div class="pipeline__table">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSort>
+                
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Název </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="type">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
+                  <td mat-cell *matCellDef="let element"> {{getTypeLabel(element.type)}} </td>
+              </ng-container>
+
+                <ng-container matColumnDef="restEndpoint">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Restový koncový bod </th>
+                    <td mat-cell *matCellDef="let element"> {{element.restEndpoint}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Smazat</th>
+                  <td mat-cell *matCellDef="let element"> 
+                      <button mat-icon-button (click)="delete(element.id)">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                  </td>
+              </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+        <div class="pipeline__right">
+          <h3>Spustit pipeline</h3>
+          <form [formGroup]="myFormSubmit" (ngSubmit)="onSubmit()" class="pipeline__submitForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Název pipeline</mat-label>
+              <mat-select formControlName="pipelineUrl">
+                <mat-option *ngFor="let item of dataSource" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="myFormSubmit.controls.pipelineUrl.invalid">Název pipeline je povinný!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Název vstupního datasetu</mat-label>
+              <mat-select formControlName="datasetName">
+                <mat-option *ngFor="let item of datasetNames" [value]="item.name">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="myFormSubmit.controls.datasetName.invalid">Název datasetu je povinný!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Verze vstupního datasetu</mat-label>
+              <input matInput formControlName="datasetVersion" />
+              <mat-error *ngIf="myFormSubmit.controls.datasetVersion.invalid">Verze datasetu je povinná!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Název experimentu</mat-label>
+              <input matInput formControlName="experimentName">
+              <mat-error *ngIf="myFormSubmit.controls.experimentName.invalid">Název experimentu je povinný!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Název práce</mat-label>
+              <input matInput formControlName="displayName">
+              <mat-error *ngIf="myFormSubmit.controls.displayName.invalid">Název práce je povinný!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Popis</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" [disabled]="myFormSubmit.invalid">Spustit</button>
+          </form>
+        </div>
+    </div>
+</div>

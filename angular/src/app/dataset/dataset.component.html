@@ -1,0 +1,68 @@
+<div class="section">
+  <h1>Dataset</h1>
+    <div class="dataset">
+      <div class="dataset__left">
+        
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSort>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Název </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="dataType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Datový typ </th>
+              <td mat-cell *matCellDef="let element"> {{element.dataType}} </td>
+            </ng-container>
+                  
+            <ng-container matColumnDef="latestVersion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Poslední verze </th>
+              <td mat-cell *matCellDef="let element"> {{element.latestVersion}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
+        </div>
+        <div class="dataset__right">
+          <h3>Nový</h3>
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="dataset__form">
+            <mat-form-field appearance="fill">
+              <mat-label>Název</mat-label>
+              <input matInput formControlName="name">
+              <mat-error *ngIf="myForm.controls.name.invalid">Název je povinný!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Typ</mat-label>
+              <mat-select formControlName="dataType">
+                <mat-option value="mltable">mltable</mat-option>
+                <mat-option value="uri_file">uri_file</mat-option>
+                <mat-option value="uri_folder">uri_folder</mat-option>
+              </mat-select>
+              <mat-error *ngIf="myForm.controls.dataType.invalid">Typ je povinný!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Verze</mat-label>
+              <input matInput formControlName="version">
+              <mat-error *ngIf="myForm.controls.version.invalid">Verze je povinná!</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Popis</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Url v datovém úložišti</mat-label>
+              <input matInput formControlName="url">
+              <mat-error *ngIf="myForm.controls.url.invalid">URL je povinné!</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" [disabled]="myForm.invalid">Uložit</button>
+          </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="section">
+    <h1>Modely</h1>
+    <div class="models">
+        <div class="models__add">
+            <h4 class="models_header">Nové prostředí:</h4>
+            <form [formGroup]="myForm" class="models__form">
+                <mat-form-field appearance="fill" class="models__item">
+                    <mat-label>Název prostředí</mat-label>
+                    <input matInput formControlName="environmentName">
+                    <mat-error *ngIf="myForm.controls.environmentName.invalid">Název je povinný!</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="models__item">
+                    <mat-label>Číslo portu</mat-label>
+                    <input matInput formControlName="port">
+                    <mat-error *ngIf="myForm.controls.port.invalid &&
+                      !myForm.controls.port.errors?.uniqueName">Číslo portu je povinné!</mat-error>
+                      <mat-error *ngIf="myForm.controls.port.errors?.uniqueName">Číslo portu musí být unikátní!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="models__item">
+                    <mat-label>Název pipeline</mat-label>
+                    <mat-select formControlName="pipelineName">
+                      <mat-option *ngFor="let item of pipelines" [value]="item.name">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="myForm.controls.pipelineName.invalid">Název pipeline je povinný!</mat-error>
+                  </mat-form-field>
+                <div class="models_addSubmit">
+                    <button mat-raised-button type="submit" [disabled]="myForm.invalid" (click)="create()">Uložit</button>
+                </div>
+            </form>
+        </div>
+        <div class="models__info">
+            <mat-card *ngFor="let model of models" class="models__model">
+                <mat-card-header class="models__cardHeader">
+                  <mat-card-title class="models__headerItem">Model: <b>{{model.name}}</b></mat-card-title>
+                  <button mat-icon-button class="models__headerItem" (click)="delete(model.id)"><mat-icon>close</mat-icon></button>
+                </mat-card-header>
+                
+                <mat-card-content class="models__metrics">
+                    <div class="models__metric"><span class="models__text"><span class="models__textHeader--bolt">Prostředí:</span>{{model.environmentName}}</span></div>  
+                    <div class="models__metric"><span class="models__text"><span class="models__textHeader--bolt">Port:</span>{{model.port}}</span></div>
+                    <div class="models__metric"><span class="models__text"><span class="models__textHeader--bolt">Pipeline:</span>{{model.pipelineName}}</span></div>
+                    <div class="models__metric"><span class="models__text"><span class="models__textHeader--bolt">Verze:</span> {{model.version}}</span></div>
+                    <div class="models__metric"><span class="models__text"><span class="models__textHeader--bolt">Přesnost:</span> {{model.accuracy}}</span></div>
+                    <div class="models__metric"><button mat-button class="models__buttonMetric" (click)="get_performance(model.id)">Přesnost</button></div>
+                    <div class="models__metric"><button mat-button class="models__buttonMetric" (click)="get_data_drift(model.id)"> Datový drift</button></div>
+                </mat-card-content>
+                <div class="models__divider">
+                  <mat-divider></mat-divider>
+                </div>
+                <mat-card-content>
+                  <div class="models__predict">
+                    <span class="models__text models__textHeader--bolt">Vstup:</span>
+                    <form [formGroup]="inputForm"class="models__formPredict">
+                      <input mat-input placeholder="Vstup" class="models__predictInput" formControlName="{{model.id}}">
+                    </form>
+                    <button mat-button class="models__buttonMetric" (click)="predict(model.id)">Predikovat</button>
+                  </div>
+                  <div class="models__output">
+                    <span class="models__text models__textHeader--bolt">Výstup:</span>
+                    <form [formGroup]="outputForm"class="models__formPredict">
+                      <textarea matInput placeholder="Výstup" class="models__textarea" formControlName="{{model.id}}"></textarea>
+                    </form>
+                  </div>
+                </mat-card-content>
+                <mat-card-footer class="models__footer">
+                  <div class="models__metric"><span class="models__text"><span class="models__textHeader--normal">Poslední změna:</span> {{model.lastUpdate | date: 'd.M.yyyy HH:mm' : "UTC+4"  }}</span></div>
+                </mat-card-footer>
+              </mat-card>
+        </div>
+    </div>
+</div>

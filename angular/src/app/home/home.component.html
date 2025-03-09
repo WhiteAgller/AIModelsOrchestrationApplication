@@ -1,0 +1,10 @@
+<div class="menu">
+  <h1 class="menu__header">Menu</h1>
+  <button mat-raised-button class="menu__item" (click)="navigateToDataset()">Datasety</button>
+  <button mat-raised-button class="menu__item" (click)="navigateToPipeline()">Pipeliny &amp; Práce</button>
+  <button mat-raised-button class="menu__item" (click)="navigateToModels()">Modely</button>
+  <button mat-raised-button class="menu__item" (click)="navigateToConfig()">Konfigurace</button>
+  <div *ngIf="!hasConfig" class="menu__info">
+    <p>Konfigurace není k dispozici!</p>
+  </div>
+</div>

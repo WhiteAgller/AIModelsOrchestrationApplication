@@ -1,0 +1,14 @@
+.config__form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.config__item{
+    width: 45%;
+    margin: 0.5rem;
+}
+
+.config_button{
+    width: 10rem;
+}

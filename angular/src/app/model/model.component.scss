@@ -1,0 +1,131 @@
+.models__form {
+    display: flex;
+    display: row;
+    width: 80%;
+    align-items: center;
+}
+
+.models__add{
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.models__item{
+    width: 100%;
+    padding-right: 1rem;
+}
+
+.models_addSubmit {
+    padding-bottom: 1rem;
+}
+
+.models_header{
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+}
+
+.models__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.models__cardHeader{
+    display: flex;
+    flex-direction: row;
+}
+
+.models__cardHeader .models__headerItem:last-of-type{
+    margin-left: auto;
+}
+
+.models__metrics{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.models__metrics .models__metric{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-right: 1rem;
+}
+
+.models__metrics .models__metric:first-child{
+    max-width: 10rem;
+}
+
+.models__text {
+    padding-top: 0.3rem;    
+}
+
+.models__metrics .models__metric .models__buttonMetric {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.models__buttonMetric {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-left: 2rem;
+}
+
+.models__textHeader--bolt{
+    padding-right: 0.5rem;
+    font-weight: 600;
+    min-width: 4rem;
+}
+
+.models__textHeader--normal{
+    padding-right: 0.5rem;
+}
+
+.models__icon{
+    min-width: 1%;
+}
+
+.models__model {
+    margin-bottom: 1rem;
+}
+
+.models__model .models__subtitle{
+    padding-right: 1rem;
+}
+
+.models__footer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0.3rem 0.3rem 0.3rem;
+}
+
+.models__predict {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+
+.models__predictInput {
+    width: 100%;
+}
+
+.models__info .models__divider {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.models__output{
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+
+.models__output .models__textarea{
+    width: 100%;
+}
+
+.models__formPredict {
+    width: 100%;
+}
